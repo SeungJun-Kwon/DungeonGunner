@@ -501,6 +501,57 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!1 &910604934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 910604936}
+  - component: {fileID: 910604935}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &910604935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910604934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99d9487764801274ca94f89c676d19de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dontDestroyOnLoad: 1
+  _dungeonLevelList:
+  - {fileID: 11400000, guid: ec168d16eb8dd0d4a99c57002062aded, type: 2}
+  - {fileID: 11400000, guid: 666ea3d79c66e8245b5c9c7833455d74, type: 2}
+  - {fileID: 11400000, guid: ba2993903f6ebe448bc973ebf96c0c4f, type: 2}
+  _currentDungeonLevelListIndex: 0
+  _gameState: 0
+--- !u!4 &910604936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910604934}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.4054066, y: 6.7132506, z: -0.026803024}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &943497499
 GameObject:
   m_ObjectHideFlags: 3
@@ -794,3 +845,4 @@ SceneRoots:
   - {fileID: 342350005}
   - {fileID: 1574358585}
   - {fileID: 221164414}
+  - {fileID: 910604936}
