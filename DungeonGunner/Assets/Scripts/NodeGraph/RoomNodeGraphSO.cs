@@ -24,12 +24,33 @@ public class RoomNodeGraphSO : ScriptableObject
         }
     }
 
+    public RoomNodeSO GetRoomNode(RoomNodeTypeSO roomNodeType)
+    {
+        foreach(var roomNode in _roomNodeList)
+        {
+            if(roomNode._roomNodeType == roomNodeType)
+            {
+                return roomNode;
+            }
+        }
+
+        return null;
+    }
+
     public RoomNodeSO GetRoomNode(string roomNodeID)
     {
         if (_roomNodeDic.TryGetValue(roomNodeID, out var node))
             return node;
 
         return null;
+    }
+
+    public IEnumerable<RoomNodeSO> GetChildRoomNodes(RoomNodeSO parentRoomNode)
+    {
+        foreach(string childRoomNodeID in parentRoomNode._childRoomNodeIDList)
+        {
+            yield return GetRoomNode(childRoomNodeID);
+        }
     }
 
 #if UNITY_EDITOR

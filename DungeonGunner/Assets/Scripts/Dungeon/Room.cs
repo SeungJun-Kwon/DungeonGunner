@@ -14,6 +14,9 @@ public class Room
     public Vector2Int _upperBounds;
     public Vector2Int[] _spawnPositionArray;
 
+    public Vector2Int _templateLowerBounds;
+    public Vector2Int _templateUpperBounds;
+
     public List<string> _childRoomIDList;
     public string _parentRoomID;
 

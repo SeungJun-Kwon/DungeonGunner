@@ -21,15 +21,15 @@ public class GameManager : SingletonMonobehavior<GameManager>
     private void Start()
     {
         _gameState = GameState.gameStarted;
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            _gameState = GameState.gameStarted;
-        }
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            _gameState = GameState.gameStarted;
+        }
+
         HandleGameState();
     }
 
@@ -46,7 +46,12 @@ public class GameManager : SingletonMonobehavior<GameManager>
 
     void PlayDungeonLevel(int dungeonLevelListIndex)
     {
+        bool dungeonBuiltSucessfully = DungeonBuilder.Instance.GenerateDungeon(_dungeonLevelList[dungeonLevelListIndex]);
 
+        if (!dungeonBuiltSucessfully)
+        {
+            Debug.Log("던전 빌드에 실패했습니다.");
+        }
     }
 
 #if UNITY_EDITOR
