@@ -15,6 +15,17 @@ public static class HelperUtilities
         return false;
     }
 
+    public static bool ValidateCheckNullValue(Object thisObject, string fieldName, Object objectToCheck)
+    {
+        if(objectToCheck == null)
+        {
+            Debug.Log($"{fieldName} : {thisObject}에서 Null입니다.");
+            return true;
+        }
+
+        return false;
+    }
+
     public static bool ValidateCheckEnumerableValues(Object thisObject, string fieldName, IEnumerable enumerableObjectToCheck)
     {
         bool error = false;
@@ -46,5 +57,50 @@ public static class HelperUtilities
         }
 
         return error;
+    }
+
+    public static bool ValidateCheckPositiveValue(Object thisObject, string fieldName, int valueToCheck, bool isZeroAllowed)
+    {
+        bool error = false;
+
+        if (isZeroAllowed)
+        {
+            if(valueToCheck < 0)
+            {
+                Debug.Log($"{fieldName} : {thisObject}에 있는 이 값은 반드시 0 이상의 값을 가져야 합니다.");
+                error = true;
+            }
+        }
+        else
+        {
+            if (valueToCheck <= 0)
+            {
+                Debug.Log($"{fieldName} : {thisObject}에 있는 이 값은 반드시 양수의 값을 가져야 합니다.");
+                error = true;
+            }
+        }
+
+        return error;
+    }
+
+    public static Vector3 GetSpawnPositionNearestToPlayer(Vector3 playerPosition)
+    {
+        Room currentRoom = GameManager.Instance.GetCurrentRoom();
+
+        Grid grid = currentRoom._instantiatedRoom._grid;
+
+        Vector3 nearestSpawnPosition = new Vector3(10000f, 10000f, 0);
+
+        foreach(Vector2Int spawnPositionGrid in currentRoom._spawnPositionArray)
+        {
+            Vector3 spawnPositionWorld = grid.CellToWorld((Vector3Int)spawnPositionGrid);
+
+            if(Vector3.Distance(spawnPositionWorld, playerPosition) < Vector3.Distance(nearestSpawnPosition, playerPosition))
+            {
+                nearestSpawnPosition = spawnPositionWorld;
+            }
+        }
+
+        return nearestSpawnPosition;
     }
 }
