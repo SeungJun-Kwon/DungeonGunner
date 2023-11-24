@@ -160,6 +160,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: TheThief
       objectReference: {fileID: 0}
+    - target: {fileID: 6298954290369281758, guid: 952ef02dd6f2af14699a62bb804c66c6, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.16111112
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298954290369281758, guid: 952ef02dd6f2af14699a62bb804c66c6, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.29999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298954290369281758, guid: 952ef02dd6f2af14699a62bb804c66c6, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298954290369281758, guid: 952ef02dd6f2af14699a62bb804c66c6, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.6875
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298954290369281758, guid: 952ef02dd6f2af14699a62bb804c66c6, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298954290369281758, guid: 952ef02dd6f2af14699a62bb804c66c6, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.6875
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298954290369281758, guid: 952ef02dd6f2af14699a62bb804c66c6, type: 3}
+      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7438003014660021931, guid: 952ef02dd6f2af14699a62bb804c66c6, type: 3}
       propertyPath: m_Size.x
       value: 0.25
@@ -175,6 +203,22 @@ PrefabInstance:
     - target: {fileID: 7438003014660021931, guid: 952ef02dd6f2af14699a62bb804c66c6, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643170490265154248, guid: 952ef02dd6f2af14699a62bb804c66c6, type: 3}
+      propertyPath: m_Size.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643170490265154248, guid: 952ef02dd6f2af14699a62bb804c66c6, type: 3}
+      propertyPath: m_Size.y
+      value: 0.6875
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643170490265154248, guid: 952ef02dd6f2af14699a62bb804c66c6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643170490265154248, guid: 952ef02dd6f2af14699a62bb804c66c6, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
