@@ -15,6 +15,17 @@ public static class HelperUtilities
         return false;
     }
 
+    public static bool ValidateCheckNullValue(Object thisObject, string fieldName, Object objectToCheck)
+    {
+        if(objectToCheck == null)
+        {
+            Debug.Log($"{fieldName} : {thisObject}에서 Null입니다.");
+            return true;
+        }
+
+        return false;
+    }
+
     public static bool ValidateCheckEnumerableValues(Object thisObject, string fieldName, IEnumerable enumerableObjectToCheck)
     {
         bool error = false;
@@ -43,6 +54,30 @@ public static class HelperUtilities
         {
             Debug.Log($"{fieldName}은 {thisObject.name}에서 값이 없습니다.");
             error = true;
+        }
+
+        return error;
+    }
+
+    public static bool ValidateCheckPositiveValue(Object thisObject, string fieldName, int valueToCheck, bool isZeroAllowed)
+    {
+        bool error = false;
+
+        if (isZeroAllowed)
+        {
+            if(valueToCheck < 0)
+            {
+                Debug.Log($"{fieldName} : {thisObject}에 있는 이 값은 반드시 0 이상의 값을 가져야 합니다.");
+                error = true;
+            }
+        }
+        else
+        {
+            if (valueToCheck <= 0)
+            {
+                Debug.Log($"{fieldName} : {thisObject}에 있는 이 값은 반드시 양수의 값을 가져야 합니다.");
+                error = true;
+            }
         }
 
         return error;
