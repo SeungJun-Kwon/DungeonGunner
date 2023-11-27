@@ -135,6 +135,12 @@ GameObject:
   - component: {fileID: 241461831048404577}
   - component: {fileID: 6734595542750161099}
   - component: {fileID: 4205022484228094743}
+  - component: {fileID: 8519240959304480821}
+  - component: {fileID: 4644001340974036918}
+  - component: {fileID: 3637431134494582714}
+  - component: {fileID: 1663479193802695007}
+  - component: {fileID: 346989880856693158}
+  - component: {fileID: 8034936233676965443}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -403,6 +409,82 @@ MonoBehaviour:
   _health: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   _animator: {fileID: 0}
+  _idleEvent: {fileID: 0}
+  _aimWeaponEvent: {fileID: 0}
+--- !u!114 &8519240959304480821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091722771982727323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f302ecd6c780b94abce1e7312c04042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponShootPosition: {fileID: 1944919724235507421}
+--- !u!114 &4644001340974036918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091722771982727323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285c49f951af7974b8ee4e8d650245b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3637431134494582714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091722771982727323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fe4b1b691ea4304ca2d66f13a69ebc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1663479193802695007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091722771982727323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d4b5296e36cc64fb310397bc3544d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &346989880856693158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091722771982727323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab03cf33a96327f489dfd8faf18b396a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8034936233676965443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091722771982727323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1086e662070484d8f5741250eaa5f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponRotationPointTransform: {fileID: 4986609374634729685}
 --- !u!1 &6014304384576382319
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,15 +559,15 @@ SpriteRenderer:
   m_SortingLayerID: -653709415
   m_SortingLayer: 4
   m_SortingOrder: 5
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: abbe40c4d6a803f42a7c4f53404a484d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.125, y: 0.6875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!60 &6298954290369281758
@@ -523,10 +605,10 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.18444446, y: 0.37008545}
+    oldSize: {x: 1.125, y: 0.6875}
+    newSize: {x: 1.125, y: 0.6875}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
