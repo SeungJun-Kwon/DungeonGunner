@@ -17,6 +17,19 @@ public class AnimatePlayer : MonoBehaviour
     {
         _player._idleEvent.OnIdle += IdleEvent_OnIdle;
         _player._aimWeaponEvent.OnWeaponAim += AimWeaponEvent_OnWeaponAim;
+        _player._movementByVelocityEvent.OnMovementByVelocity += MovementByVelocityEvent_OnMovementByVelocity;
+    }
+
+    private void OnDisable()
+    {
+        _player._idleEvent.OnIdle -= IdleEvent_OnIdle;
+        _player._aimWeaponEvent.OnWeaponAim -= AimWeaponEvent_OnWeaponAim;
+        _player._movementByVelocityEvent.OnMovementByVelocity -= MovementByVelocityEvent_OnMovementByVelocity;
+    }
+
+    void MovementByVelocityEvent_OnMovementByVelocity(MovementByVelocityEvent movementByVelocityEvent, MovementByVelocityEventArgs movementByVelocityEventArgs)
+    {
+        SetMovementAnimationParameters();
     }
 
     void IdleEvent_OnIdle(IdleEvent idleEvent)
@@ -28,6 +41,12 @@ public class AnimatePlayer : MonoBehaviour
     {
         _player._animator.SetBool(Settings.isMoving, false);
         _player._animator.SetBool(Settings.isIdle, true);
+    }
+
+    void SetMovementAnimationParameters()
+    {
+        _player._animator.SetBool(Settings.isMoving, true);
+        _player._animator.SetBool(Settings.isIdle, false);
     }
 
     void AimWeaponEvent_OnWeaponAim(AimWeaponEvent aimWeaponEvent, AimWeaponEventArgs aimWeaponEventArgs)

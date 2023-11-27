@@ -156,6 +156,49 @@ public static class HelperUtilities
         return error;
     }
 
+    public static bool ValidateCheckPositiveValue(Object thisObject, string fieldName, float valueToCheck, bool isZeroAllowed)
+    {
+        bool error = false;
+
+        if (isZeroAllowed)
+        {
+            if (valueToCheck < 0f)
+            {
+                Debug.Log($"{fieldName} : {thisObject}에 있는 이 값은 반드시 0 이상의 값을 가져야 합니다.");
+                error = true;
+            }
+        }
+        else
+        {
+            if (valueToCheck <= 0f)
+            {
+                Debug.Log($"{fieldName} : {thisObject}에 있는 이 값은 반드시 양수의 값을 가져야 합니다.");
+                error = true;
+            }
+        }
+
+        return error;
+    }
+
+    public static bool ValidateCheckPositiveRange(Object thisObject, string fieldNameMinimum, float valueToCheckMinimum, string fieldNameMaximum,
+        float valueToCheckMaximum, bool isZeroAllowed)
+    {
+        bool error = false;
+        if(valueToCheckMinimum > valueToCheckMaximum)
+        {
+            Debug.Log($"{thisObject.name} : {fieldNameMinimum}({valueToCheckMinimum})이 {fieldNameMaximum}({valueToCheckMaximum})보다 큽니다.");
+            return false;
+        }
+
+        if (ValidateCheckPositiveValue(thisObject, fieldNameMinimum, valueToCheckMinimum, isZeroAllowed))
+            error = true;
+
+        if (ValidateCheckPositiveValue(thisObject, fieldNameMaximum, valueToCheckMaximum, isZeroAllowed))
+            error = true;
+
+        return error;
+    }
+
     public static Vector3 GetSpawnPositionNearestToPlayer(Vector3 playerPosition)
     {
         Room currentRoom = GameManager.Instance.GetCurrentRoom();

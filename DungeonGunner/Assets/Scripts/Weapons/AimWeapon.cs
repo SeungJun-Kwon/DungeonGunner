@@ -49,8 +49,10 @@ public class AimWeapon : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     private void OnValidate()
     {
         HelperUtilities.ValidateCheckNullValue(this, nameof(_weaponRotationPointTransform), _weaponRotationPointTransform);
     }
+#endif
 }
