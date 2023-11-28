@@ -4,6 +4,9 @@ using UnityEngine;
 
 public static class Settings
 {
+    public const float _pixelsPerUnit = 16f;
+    public const float _tileSizePixels = 16f;
+
     public const int _maxDungeonRebuildAttempsForRoomGraph = 1000;
     public const int _maxDungeonBuildAttemps = 10;
 

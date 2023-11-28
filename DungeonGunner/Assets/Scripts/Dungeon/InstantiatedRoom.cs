@@ -32,6 +32,8 @@ public class InstantiatedRoom : MonoBehaviour
 
         BlockOffUnusedDoorways();
 
+        AddDoorsToRooms();
+
         DisableCollisionTilemapRenderer();
     }
 
@@ -160,6 +162,43 @@ public class InstantiatedRoom : MonoBehaviour
                     startPosition.y - yPos, 0)));
 
                 tilemap.SetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - 1 - yPos, 0), transformMatrix);
+            }
+        }
+    }
+
+    void AddDoorsToRooms()
+    {
+        if (_room._roomNodeType._isCorridor)
+            return;
+
+        foreach(var doorway in _room._doorwayList)
+        {
+            if(doorway.doorPrefab != null && doorway.isConnected)
+            {
+                float tileDistance = Settings._tileSizePixels / Settings._pixelsPerUnit;
+
+                GameObject door = null;
+
+                if(doorway.orientation == Orientation.north)
+                {
+                    door = Instantiate(doorway.doorPrefab, transform);
+                    door.transform.localPosition = new Vector3(doorway.position.x + tileDistance / 2f, doorway.position.y + tileDistance, 0f);
+                }
+                else if(doorway.orientation == Orientation.south)
+                {
+                    door = Instantiate(doorway.doorPrefab, transform);
+                    door.transform.localPosition = new Vector3(doorway.position.x + tileDistance / 2f, doorway.position.y, 0f);
+                }
+                else if(doorway.orientation == Orientation.east)
+                {
+                    door = Instantiate(doorway.doorPrefab, transform);
+                    door.transform.localPosition = new Vector3(doorway.position.x + tileDistance, doorway.position.y + tileDistance * 1.25f, 0f);
+                }
+                else if(doorway.orientation == Orientation.west)
+                {
+                    door = Instantiate(doorway.doorPrefab, transform);
+                    door.transform.localPosition = new Vector3(doorway.position.x, doorway.position.y + tileDistance * 1.25f, 0f);
+                }
             }
         }
     }
