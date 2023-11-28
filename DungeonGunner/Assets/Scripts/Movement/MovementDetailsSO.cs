@@ -9,6 +9,10 @@ public class MovementDetailsSO : ScriptableObject
     public float _minMoveSpeed = 8f;
     public float _maxMoveSpeed = 8f;
 
+    public float _rollSpeed;
+    public float _rollDistance;
+    public float _rollCoolDownTime;
+
     public float GetMoveSpeed()
     {
         if(_minMoveSpeed == _maxMoveSpeed)
@@ -25,6 +29,10 @@ public class MovementDetailsSO : ScriptableObject
     private void OnValidate()
     {
         HelperUtilities.ValidateCheckPositiveRange(this, nameof(_minMoveSpeed), _minMoveSpeed, nameof(_maxMoveSpeed), _maxMoveSpeed, false);
+
+        HelperUtilities.ValidateCheckPositiveValue(this, nameof(_rollSpeed), _rollSpeed, false);
+        HelperUtilities.ValidateCheckPositiveValue(this, nameof(_rollDistance), _rollDistance, false);
+        HelperUtilities.ValidateCheckPositiveValue(this, nameof(_rollCoolDownTime), _rollCoolDownTime, false);
     }
 #endif
 }

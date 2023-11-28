@@ -12,6 +12,11 @@ public class PlayerControl : MonoBehaviour
 
     float _moveSpeed;
 
+    Coroutine _playerRollCoroutine;
+    WaitForFixedUpdate _waitForFixedUpdate;
+    bool _isPlayerRolling = false;
+    float _playerRollCoolDownTimer = 0f;
+
     private void Awake()
     {
         _player = GetComponent<Player>();
@@ -19,17 +24,28 @@ public class PlayerControl : MonoBehaviour
         _moveSpeed = _movementDetails.GetMoveSpeed();
     }
 
+    private void Start()
+    {
+        _waitForFixedUpdate = new();
+    }
+
     private void Update()
     {
+        if (_isPlayerRolling)
+            return;
+
         MovementInput();
 
         WeaponInput();
+
+        PlayerRollCoolDownTimer();
     }
 
     void MovementInput()
     {
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
         float verticalMovement = Input.GetAxisRaw("Vertical");
+        bool rightMouseButtonDown = Input.GetMouseButtonDown(1);
 
         Vector2 direction = new Vector2(horizontalMovement, verticalMovement);
 
@@ -42,11 +58,54 @@ public class PlayerControl : MonoBehaviour
 
         if (direction != Vector2.zero)
         {
-            _player._movementByVelocityEvent.CallMovementByVelocityEvent(direction, _moveSpeed);
+            if (!rightMouseButtonDown)
+            {
+                _player._movementByVelocityEvent.CallMovementByVelocityEvent(direction, _moveSpeed);
+            }
+            else if(_playerRollCoolDownTimer <= 0f)
+            {
+                PlayerRoll((Vector3)direction);
+            }
         }
         else
         {
             _player._idleEvent.CallIdleEvent();
+        }
+    }
+
+    void PlayerRoll(Vector3 direction)
+    {
+        _playerRollCoroutine = StartCoroutine(PlayerRollCoroutine(direction));
+    }
+
+    IEnumerator PlayerRollCoroutine(Vector3 direction)
+    {
+        // 구르기를 위한 타겟 과의 최소 거리
+        float minDistance = 0.2f;
+
+        _isPlayerRolling = true;
+
+        Vector3 targetPosition = _player.transform.position + direction * _movementDetails._rollDistance;
+
+        while(Vector3.Distance(_player.transform.position, targetPosition) > minDistance)
+        {
+            _player._movementToPositionEvent.CallMovementToPositionEvent(targetPosition, _player.transform.position, _movementDetails._rollSpeed, direction, _isPlayerRolling);
+
+            yield return _waitForFixedUpdate;
+        }
+
+        _isPlayerRolling = false;
+
+        _playerRollCoolDownTimer = _movementDetails._rollCoolDownTime;
+
+        _player.transform.position = targetPosition;
+    }
+
+    void PlayerRollCoolDownTimer()
+    {
+        if(_playerRollCoolDownTimer >= 0f)
+        {
+            _playerRollCoolDownTimer -= Time.deltaTime;
         }
     }
 
@@ -75,6 +134,28 @@ public class PlayerControl : MonoBehaviour
         playerAimDirection = HelperUtilities.GetAimDirection(playerAngleDegrees);
 
         _player._aimWeaponEvent.CallAimWeaponEvent(playerAimDirection, playerAngleDegrees, weaponAngleDegrees, weaponDirection);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        StopPlayerRollRoutine();
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        StopPlayerRollRoutine();
+    }
+
+    void StopPlayerRollRoutine()
+    {
+        if(_playerRollCoroutine != null)
+        {
+            StopCoroutine(_playerRollCoroutine);
+
+            _isPlayerRolling = false;
+
+            _playerRollCoroutine = null;
+        }
     }
 
 #if UNITY_EDITOR
